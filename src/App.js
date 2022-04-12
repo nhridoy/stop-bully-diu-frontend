@@ -5,6 +5,8 @@ import Blogs from "./pages/Blogs/Blogs";
 import Complains from "./pages/Complains/Complains";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SIgnUp/SignUp";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/complains" element={<Complains />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );
