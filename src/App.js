@@ -5,6 +5,7 @@ import Blogs from "./pages/Blogs/Blogs";
 import Complains from "./pages/Complains/Complains";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
+import Profile from "./pages/Profile/Profile";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SIgnUp/SignUp";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
