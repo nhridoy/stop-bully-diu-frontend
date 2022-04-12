@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   return (
@@ -9,7 +10,9 @@ const ProductList = () => {
           alt=""
         />
         <div className="mt-2 flex flex-col gap-2">
-          <h5 className="text-2xl">Product Name</h5>
+          <Link to="" className="text-2xl text-blue-600">
+            Product Name
+          </Link>
           <p className="text-sm">Price: $100</p>
           <p className="text-sm">
             Description: Lorem ipsum dolor sit amet, consectetur adipiscing

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LatestBlogs = () => {
   return (
@@ -10,7 +11,9 @@ const LatestBlogs = () => {
             alt="..."
           />
           <div className="mt-2">
-            <h5 className="text-2xl">Card title</h5>
+            <Link to="" className="text-2xl text-blue-600">
+              Post Title
+            </Link>
 
             <p className="card-text">
               This is a longer card with supporting text below as a natural

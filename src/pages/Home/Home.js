@@ -1,6 +1,7 @@
 import React from "react";
+import LatestBlogs from "../../components/Common/LatestBlogs";
 import ProductList from "../../components/Common/ProductList";
-import LatestBlogs from "../../components/Home/LatestBlogs/LatestBlogs";
+
 import Slider from "../../components/Home/Slider/Slider";
 
 const Home = () => {
