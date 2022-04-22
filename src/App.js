@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Blogs from "./pages/Blogs/Blogs";
 import Complains from "./pages/Complains/Complains";
@@ -9,10 +10,12 @@ import Profile from "./pages/Profile/Profile";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SIgnUp/SignUp";
 
+
 function App() {
   return (
     <div className="container mx-auto p-4">
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
@@ -22,6 +25,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

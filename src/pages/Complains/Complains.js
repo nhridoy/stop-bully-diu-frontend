@@ -1,7 +1,7 @@
 import React from "react";
 
 const Complains = () => {
-  return <div>Complains</div>;
+  return (<div className="">Complains</div>);
 };
 
 export default Complains;

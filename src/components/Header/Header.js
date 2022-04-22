@@ -13,7 +13,7 @@ const Header = () => {
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <NavLink to="/" className="flex items-center">
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
+              Campus Court
             </span>
           </NavLink>
           <div className="flex items-center md:order-2 md:hidden ">
