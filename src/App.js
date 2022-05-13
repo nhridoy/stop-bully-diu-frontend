@@ -8,6 +8,7 @@ import Cart from "./pages/Cart/Cart";
 import Complain from "./pages/Complain/Complain";
 import Complains from "./pages/Complains/Complains";
 import Home from "./pages/Home/Home";
+import NewComplain from "./pages/NewComplain/NewComplain";
 import Product from "./pages/Product/Product";
 import Products from "./pages/Products/Products";
 import Profile from "./pages/Profile/Profile";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/new-complain" element={<NewComplain />} />
         <Route path="/complains" element={<Complains />} />
         <Route path="/complain/:id" element={<Complain />} />
         <Route path="/products" element={<Products />} />
