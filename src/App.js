@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Blog from "./pages/Blog/Blog";
 import Blogs from "./pages/Blogs/Blogs";
 import Cart from "./pages/Cart/Cart";
+import Complain from "./pages/Complain/Complain";
 import Complains from "./pages/Complains/Complains";
 import Home from "./pages/Home/Home";
 import Product from "./pages/Product/Product";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="/complains" element={<Complains />} />
+        <Route path="/complain/:id" element={<Complain />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/signin" element={<SignIn />} />
