@@ -1,20 +1,48 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import interceptor from "../../utils/interceptor";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [passwordError, setPasswordError] = React.useState(null);
+  const [emailError, setEmailError] = React.useState(null);
+  const [sidError, setSidError] = React.useState(null);
+  const [usernameError, setUsernameError] = React.useState(null);
+
+  const navigate = useNavigate();
+
   const onSubmit = data => {
-    console.log(data)
+
+    setPasswordError('');
+    setEmailError('');
+    setSidError('');
+    setUsernameError('');
+
+    const payload = {
+      "username": data.username,
+      "email": data.email,
+      "full_name": data.name,
+      "phone_number": data.phone,
+      "student_id": data.sid,
+      "password": data.password1,
+      "password2": data.password2
+    };
+
     if (data.password1 !== data.password2) {
       setPasswordError('Passwords do not match');
     } else {
-      setPasswordError('');
-      interceptor.post('/create_user/', data).then(res => {
-        console.log(res)
-      })
+      interceptor.post('/create_user/', payload).then(res => {
+        toast.success('User created successfully');
+        navigate("/signin");
+      }).catch(err => {
+        err.response.data?.email && setEmailError(err.response.data?.email[0]);
+        err.response.data?.username && setUsernameError(err.response.data?.username[0]);
+        err.response.data?.student_id && setSidError(err.response.data?.student_id[0]);
+        err.response.data?.password && setPasswordError(err.response.data?.password[0]);
+        toast.error('Something is wrong');
+      });
     }
   }
   return (
@@ -53,6 +81,7 @@ const SignUp = () => {
               {...register('email', { required: true })}
             />
             {errors.email && <p className="text-red-500 text-xs italic">Email is required</p>}
+            {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>}
           </div>
           <div className="mb-4">
             <label
@@ -85,6 +114,7 @@ const SignUp = () => {
               {...register('username', { required: true })}
             />
             {errors.username && <p className="text-red-500 text-xs italic">Username is required</p>}
+            {usernameError && <p className="text-red-500 text-xs italic">{usernameError}</p>}
           </div>
           <div className="mb-4">
             <label
@@ -101,6 +131,7 @@ const SignUp = () => {
               {...register('sid', { required: true })}
             />
             {errors.sid && <p className="text-red-500 text-xs italic">Student ID is required</p>}
+            {sidError && <p className="text-red-500 text-xs italic">{sidError}</p>}
           </div>
           <div className="mb-4">
             <label
