@@ -5,7 +5,7 @@ import interceptor from "../../utils/interceptor";
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const [passwordError, setPasswordError] = React.useState('Password is required');
+  const [passwordError, setPasswordError] = React.useState(null);
   const onSubmit = data => {
     console.log(data)
     if (data.password1 !== data.password2) {
