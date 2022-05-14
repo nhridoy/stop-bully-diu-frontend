@@ -1,6 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Blog = () => {
+  const location = useLocation();
+  console.log(location);
   return (
     <div className="py-4">
       <div className="relative w-full h-96">
