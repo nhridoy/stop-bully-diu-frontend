@@ -26,18 +26,18 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/new-blog" element={<NewBlog />} />
+        <Route path="/new-blog" element={<RequireAuth><NewBlog /></RequireAuth>} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:id" element={<Blog />} />
-        <Route path="/new-complain" element={<NewComplain />} />
-        <Route path="/complains" element={<Complains />} />
-        <Route path="/complain/:id" element={<Complain />} />
+        <Route path="/new-complain" element={<RequireAuth><NewComplain /></RequireAuth>} />
+        <Route path="/complains" element={<RequireAuth><Complains /></RequireAuth>} />
+        <Route path="/complain/:id" element={<RequireAuth><Complain /></RequireAuth>} />
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<RequireAuth><Cart /></RequireAuth>} />
       </Routes>
       <Footer />
       <ToastContainer />
