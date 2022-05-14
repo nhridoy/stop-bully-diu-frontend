@@ -11,9 +11,10 @@ const LatestBlogs = ({ blog }) => {
           <img
             src={blogimg}
             alt={blogtitle}
+            className="w-full h-64 object-cover"
           />
           <div className="mt-2">
-            <Link to={slug} className="text-2xl text-blue-600">
+            <Link to={`/blogs/${slug}`} className="text-2xl text-blue-600">
               {blogtitle}
             </Link>
 
