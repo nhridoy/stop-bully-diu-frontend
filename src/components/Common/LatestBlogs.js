@@ -1,27 +1,29 @@
+import { format } from "date-fns";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LatestBlogs = () => {
+const LatestBlogs = ({ blog }) => {
+  const { id, blogtitle, blogcontent, blogimg, slug, published_date } = blog;
   return (
     <div>
       <div className="bg-gray-100 p-2 border rounded-lg">
         <div className="border p-2 bg-gray-50">
           <img
-            src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-            alt="..."
+            src={blogimg}
+            alt={blogtitle}
           />
           <div className="mt-2">
-            <Link to="" className="text-2xl text-blue-600">
-              Post Title
+            <Link to={slug} className="text-2xl text-blue-600">
+              {blogtitle}
             </Link>
 
             <p className="card-text">
-              This is a longer card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
+              {`${blogcontent.substring(0, 100)}...`}
             </p>
             <p className="card-text">
-              <small className="text-muted">Last updated 3 mins ago</small>
+              <small className="text-muted">
+                {format(new Date(published_date), "PP")}
+              </small>
             </p>
           </div>
         </div>

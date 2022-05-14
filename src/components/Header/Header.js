@@ -5,7 +5,6 @@ import { removeTokens } from "../../utils/localstorage";
 
 const Header = () => {
   const { loggedIn, loading } = useAuth();
-  console.log(loggedIn);
 
   const handleClick = () => {
     const dropdown = document.getElementById("mobile-menu-2");

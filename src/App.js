@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/new-blog" element={<RequireAuth><NewBlog /></RequireAuth>} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/blogs/:id" element={<Blog />} />
         <Route path="/new-complain" element={<RequireAuth><NewComplain /></RequireAuth>} />
         <Route path="/complains" element={<RequireAuth><Complains /></RequireAuth>} />
         <Route path="/complain/:id" element={<RequireAuth><Complain /></RequireAuth>} />
