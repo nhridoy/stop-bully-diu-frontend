@@ -29,6 +29,7 @@ const SignIn = () => {
         const { access, refresh } = res.data;
         setTokens(access, refresh);
         navigate(from, { replace: true });
+        window.location.reload();
       }
     ).catch(err => {
       setError(err.response?.data.detail)

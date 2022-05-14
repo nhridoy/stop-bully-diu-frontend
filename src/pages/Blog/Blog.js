@@ -14,7 +14,7 @@ const Blog = () => {
         </div>
       </div>
       <p
-        class="
+        className="
     first-letter:text-5xl
     first-letter:font-bold
     first-letter:text-blue-700
