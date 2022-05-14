@@ -1,11 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import interceptor from "../../utils/interceptor";
+import { setTokens } from "../../utils/localstorage";
 
 const SignIn = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const navigate = useNavigate();
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  const { loggedIn, loading } = useAuth();
+
+  let from = location.state?.from?.pathname || "/";
+
+  if (!loading && loggedIn) {
+    navigate(from, { replace: true });
+  }
 
   const [error, setError] = React.useState(null)
 
@@ -15,6 +26,9 @@ const SignIn = () => {
     interceptor.post('/token/', data).then(
       res => {
         console.log(res);
+        const { access, refresh } = res.data;
+        setTokens(access, refresh);
+        navigate(from, { replace: true });
       }
     ).catch(err => {
       setError(err.response?.data.detail)

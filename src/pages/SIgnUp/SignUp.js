@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import interceptor from "../../utils/interceptor";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -11,7 +12,16 @@ const SignUp = () => {
   const [sidError, setSidError] = React.useState(null);
   const [usernameError, setUsernameError] = React.useState(null);
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  const { loggedIn, loading } = useAuth();
+
+  let from = location.state?.from?.pathname || "/";
+
+  if (!loading && loggedIn) {
+    navigate(from, { replace: true });
+  }
 
   const onSubmit = data => {
 

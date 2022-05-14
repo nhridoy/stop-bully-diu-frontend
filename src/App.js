@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 import Blog from "./pages/Blog/Blog";
 import Blogs from "./pages/Blogs/Blogs";
 import Cart from "./pages/Cart/Cart";
@@ -35,7 +36,7 @@ function App() {
         <Route path="/product/:id" element={<Product />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
