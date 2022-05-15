@@ -25,7 +25,7 @@ const Home = () => {
       <h1 className="text-4xl font-semibold text-center p-4">Latest Blogs</h1>
       <div className="grid lg:grid-cols-3 md:gird-cols-2 grid-cols-1 gap-4">
         {
-          data.data?.map(blog => (
+          data.data.slice(0, 3)?.map(blog => (
             <LatestBlogs key={blog.id} blog={blog} />
           ))
         }
