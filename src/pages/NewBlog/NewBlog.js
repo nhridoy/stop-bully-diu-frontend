@@ -1,14 +1,16 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import myAxios from '../../utils/myAxios';
 
 const NewBlog = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const onSubmit = data => {
         const payload = {
             blogtitle: data.title,
             blogcontent: data.details,
-            blogimg: data.image['0'],
+            blogimg: data.image[ '0' ],
         }
         console.log(payload);
         myAxios.post('/api/post/', payload, {
@@ -17,6 +19,7 @@ const NewBlog = () => {
             }
         }).then(res => {
             console.log(res);
+            navigate(`/blogs/${res.data.id}`);
         }).catch(err => {
             console.log(err.response.data);
         })
