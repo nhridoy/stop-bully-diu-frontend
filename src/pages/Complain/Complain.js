@@ -1,11 +1,28 @@
-import React from 'react'
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import myAxios from '../../utils/myAxios';
 
 const Complain = () => {
+    const { id } = useParams();
+    const [ complain, setComplain ] = React.useState({})
+    React.useEffect(() => {
+        myAxios.get(`/api/complain_status/${id}/`)
+            .then(res => {
+                setComplain(res.data)
+            })
+            .catch(err => {
+                console.log(err.response.data);
+            })
+    }, [ id ])
+
     return (<>
+        <h2 className="px-4 pt-3 pb-2 text-gray-800 text-3xl">{complain?.title}</h2>
 
-        <h2 className="text-3xl">Complain Title</h2>
+        <p className="px-4 pt-3 pb-2 text-gray-800 text-lg">{complain?.details}</p>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nulla nam quia suscipit voluptas assumenda soluta ad at, atque beatae alias velit aliquid tenetur rem quos, esse itaque pariatur repellendus</p>
+        <p className="px-4 pt-3 pb-2 text-gray-800 text-lg">{complain?.suspect}</p>
+
+        <p className="px-4 pt-3 pb-2 text-gray-800 text-lg">{complain?.status}</p>
 
         <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">All Comments</h2>
 
@@ -26,9 +43,6 @@ const Complain = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nulla nam quia suscipit voluptas assumenda soluta ad at, atque beatae alias velit aliquid tenetur rem quos, esse itaque pariatur repellendus
             </p>
         </div>
-
-
-
 
         <form className="w-full bg-white rounded-lg px-4 pt-2">
             <div className="flex flex-col -mx-3 mb-6">
