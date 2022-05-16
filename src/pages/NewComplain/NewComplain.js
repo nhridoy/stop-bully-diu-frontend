@@ -1,9 +1,11 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import myAxios from '../../utils/myAxios';
 
 const NewComplain = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const onSubmit = data => {
         const payload = {
             title: data.title,
@@ -18,7 +20,8 @@ const NewComplain = () => {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
-            console.log(res);
+            // console.log(res);
+            navigate("/complains");
         }).catch(err => {
             console.log(err.response.data);
         })
