@@ -13,6 +13,7 @@ import Complains from "./pages/Complains/Complains";
 import Home from "./pages/Home/Home";
 import NewBlog from "./pages/NewBlog/NewBlog";
 import NewComplain from "./pages/NewComplain/NewComplain";
+import NewProduct from "./pages/NewProduct/NewProduct";
 import Product from "./pages/Product/Product";
 import Products from "./pages/Products/Products";
 import Profile from "./pages/Profile/Profile";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogs/:id" element={<Blog />} />
         <Route path="/new-complain" element={<RequireAuth><NewComplain /></RequireAuth>} />
+        <Route path="/new-product" element={<RequireAuth><NewProduct /></RequireAuth>} />
         <Route path="/complains" element={<RequireAuth><Complains /></RequireAuth>} />
         <Route path="/complain/:id" element={<RequireAuth><Complain /></RequireAuth>} />
         <Route path="/products" element={<Products />} />
