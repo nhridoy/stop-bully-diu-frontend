@@ -4,12 +4,21 @@ import useCart from "../../hooks/useCart";
 
 const ProductList = ({ product }) => {
   const { addToCart } = useCart();
-  const { id, product_name, product_price, product_desc, product_stock } =
-    product;
+  const {
+    id,
+    product_name,
+    product_price,
+    product_desc,
+    product_stock,
+    product_image,
+  } = product;
   return (
     <div>
       <div className="bg-gray-100 p-4 border rounded-lg">
         <div className="mt-2 flex flex-col gap-2">
+          <div className="col-span-1">
+            <img src={product_image} alt="product" />
+          </div>
           <Link
             to={`/product/${id}`}
             state={product}
