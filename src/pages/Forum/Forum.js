@@ -1,12 +1,12 @@
 import React from "react";
-import interceptor from "../../utils/interceptor";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import interceptor from "../../utils/interceptor";
 
 const Forum = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery('singleForum', () => {
-    return interceptor.get(`/api/post_update/${id}`)
+    return interceptor.get(`/api/forum_post/${id}`)
   })
   console.log(data);
   if (isLoading) {
@@ -21,7 +21,7 @@ const Forum = () => {
 
   return (
     <div className="py-4">
-      <div className="relative w-full h-96">
+      {/* <div className="relative w-full h-96">
         <img
           src={data.data.blogimg}
           alt={data.data.blogtitle}
@@ -32,7 +32,7 @@ const Forum = () => {
             {data.data.blogtitle}
           </h2>
         </div>
-      </div>
+      </div> */}
       <p
         className="
     first-letter:text-5xl
@@ -44,8 +44,20 @@ const Forum = () => {
     text-xl
   "
       >
-        {data.data.blogcontent}
+        {data.data.content}
       </p>
+      {
+        data?.data?.categories?.map((item, index) => {
+          return (
+            <div className="flex justify-center items-center my-4">
+              <div className="bg-blue-500 text-white text-2xl rounded-full px-4 py-1">
+                {item.name}
+              </div>
+            </div>
+          )
+        }
+        )
+      }
     </div>
   );
 };

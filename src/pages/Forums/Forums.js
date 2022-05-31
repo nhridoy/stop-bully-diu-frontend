@@ -1,9 +1,9 @@
 import React from "react";
-import LatestForums from "../../components/Common/LatestForums";
+import { useQuery } from "react-query";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Link } from "react-router-dom";
+import LatestForums from "../../components/Common/LatestForums";
 import interceptor from "../../utils/interceptor";
-import { useQuery } from "react-query";
 
 const Forums = () => {
 
@@ -22,8 +22,8 @@ const Forums = () => {
 
   return (
     <div className="py-4">
-      <Link to="/new-blog" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-        Create Blog
+      <Link to="/new-forum" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        Create Forum
       </Link>
       <div className="mt-10">
         <ResponsiveMasonry
