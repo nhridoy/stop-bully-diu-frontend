@@ -8,9 +8,9 @@ const NewForum = () => {
     const navigate = useNavigate();
     const onSubmit = data => {
         const payload = {
-            blogtitle: data.title,
+            title: data.title,
             content: data.content,
-            blogimg: data.image[ '0' ],
+            img: data.image[ '0' ],
         }
         // console.log(payload);
         myAxios.post('/api/forum_post/', payload, {
