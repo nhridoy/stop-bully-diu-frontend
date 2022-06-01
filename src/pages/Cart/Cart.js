@@ -1,8 +1,49 @@
 import React from "react";
 import useCart from "../../hooks/useCart";
+import {
+  clearLocalStorage,
+  getFromLocalStorage,
+  removeFromLocalStorage,
+} from "../../utils/cartstore";
+import interceptor from "../../utils/interceptor";
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const [carts, setCarts] = React.useState(getFromLocalStorage());
+
+  const [occurrences, setOccurances] = React.useState(
+    carts.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+    }, {})
+  );
+  console.log(occurrences);
+  const [cartProducts, setCartProducts] = React.useState([]);
+  const [total, setTotal] = React.useState(0);
+
+  React.useEffect(() => {
+    fetchCart();
+  }, []);
+
+  const fetchCart = () => {
+    Object.keys(occurrences).forEach(function (key) {
+      interceptor(`/api/product/${key}`).then((res) => {
+        setCartProducts((prev) => [
+          ...prev,
+          {
+            ...res.data,
+            quantity: occurrences[key],
+            price: res.data.product_price * occurrences[key],
+          },
+        ]);
+        setTotal((prev) => prev + res.data.product_price * occurrences[key]);
+      });
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCartProducts((prev) => prev.filter((product) => product.id !== id));
+    removeFromLocalStorage(id);
+    fetchCart();
+  };
   return (
     <div className="py-4">
       {/* Shopping Cart Design */}
@@ -10,7 +51,7 @@ const Cart = () => {
         <div className="w-full overflow-x-auto">
           <div className="my-2">
             <h3 className="text-xl font-bold tracking-wider">
-              Shopping Cart {cart?.length} item
+              Shopping Cart {cartProducts?.length} item
             </h3>
           </div>
           <table className="w-full shadow-inner text-center">
@@ -21,24 +62,23 @@ const Cart = () => {
                 </th>
                 <th className="px-6 py-3 font-bold whitespace-nowrap">Qty</th>
                 <th className="px-6 py-3 font-bold whitespace-nowrap">Price</th>
-                <th className="px-6 py-3 font-bold whitespace-nowrap">
+                {/* <th className="px-6 py-3 font-bold whitespace-nowrap">
                   Remove
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody>
-              {cart?.map((product) => {
-                const { id, product_name, product_price, quantity } = product;
+              {cartProducts?.map((product) => {
+                const { id, product_name, product_price, price, quantity } =
+                  product;
                 return (
                   <tr key={id}>
                     <td className="px-6 py-4 whitespace-no-wrap">
                       {product_name}
                     </td>
                     <td className="px-6 py-4 whitespace-no-wrap">{quantity}</td>
-                    <td className="px-6 py-4 whitespace-no-wrap">
-                      ${product_price}
-                    </td>
-                    <td className="px-6 py-4 whitespace-no-wrap">
+                    <td className="px-6 py-4 whitespace-no-wrap">${price}</td>
+                    {/* <td className="px-6 py-4 whitespace-no-wrap">
                       <button
                         className="bg-red-600 px-3 py-1"
                         onClick={() => {
@@ -47,7 +87,7 @@ const Cart = () => {
                       >
                         Remove
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}
@@ -69,7 +109,7 @@ const Cart = () => {
               "
               >
                 <span className="text-xl font-bold">Total</span>
-                <span className="text-2xl font-bold">$37.50</span>
+                <span className="text-2xl font-bold">${total}</span>
               </div>
             </div>
           </div>
@@ -85,7 +125,15 @@ const Cart = () => {
               hover:bg-blue-600
             "
               onClick={() => {
-                clearCart();
+                clearLocalStorage();
+                alert("Order Placed");
+                // setCarts([]);
+                // setOccurances({});
+                // fetchCart();
+                setCartProducts([]);
+                setTotal(0);
+
+                // window.location.reload();
               }}
             >
               Proceed to Checkout

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import { addToLocalStorage } from "../../utils/cartstore";
 
 const ProductList = ({ product }) => {
-  const { addToCart } = useCart();
   const {
     id,
     product_name,
@@ -33,7 +33,7 @@ const ProductList = ({ product }) => {
             className="bg-blue-600 px-3 py-1"
             onClick={() => {
               alert("Added to cart!");
-              addToCart(product);
+              addToLocalStorage(id);
             }}
           >
             Add to Cart

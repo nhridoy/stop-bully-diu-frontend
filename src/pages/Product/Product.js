@@ -1,12 +1,14 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import { addToLocalStorage } from "../../utils/cartstore";
 
 const Product = () => {
   const { state } = useLocation();
   const { addToCart } = useCart();
 
   const {
+    id,
     product_name,
     product_price,
     product_desc,
@@ -30,7 +32,7 @@ const Product = () => {
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={() => {
           alert("Added to cart!");
-          addToCart(state);
+          addToLocalStorage(id);
         }}
       >
         Add to Cart

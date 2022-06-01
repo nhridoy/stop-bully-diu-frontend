@@ -5,21 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "flowbite";
 import { BrowserRouter } from "react-router-dom";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from 'react-query'
+import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </BrowserRouter>
   </QueryClientProvider>
 );
