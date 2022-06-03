@@ -4,7 +4,7 @@ import myAxios from '../../utils/myAxios';
 
 const Complain = () => {
     const { id } = useParams();
-    const [ complain, setComplain ] = React.useState({})
+    const [complain, setComplain] = React.useState({})
     React.useEffect(() => {
         myAxios.get(`/api/complain_status/${id}/`)
             .then(res => {
@@ -13,7 +13,7 @@ const Complain = () => {
             .catch(err => {
                 console.log(err.response.data);
             })
-    }, [ id ])
+    }, [id])
 
     return (<>
         <h2 className="px-4 pt-3 pb-2 text-gray-800 text-3xl">{complain?.title}</h2>
@@ -39,12 +39,12 @@ const Complain = () => {
                 </div>
 
             </div>
-            <p className="text-gray-700 text-sm">
+            {/* <p className="text-gray-700 text-sm">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nulla nam quia suscipit voluptas assumenda soluta ad at, atque beatae alias velit aliquid tenetur rem quos, esse itaque pariatur repellendus
-            </p>
+            </p> */}
         </div>
 
-        <form className="w-full bg-white rounded-lg px-4 pt-2">
+        {/* <form className="w-full bg-white rounded-lg px-4 pt-2">
             <div className="flex flex-col -mx-3 mb-6">
                 <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
                 <div className="w-full md:w-full px-3 mb-2 mt-2">
@@ -56,7 +56,7 @@ const Complain = () => {
                     </div>
                 </div>
             </div>
-        </form>
+        </form> */}
 
     </>
     )
