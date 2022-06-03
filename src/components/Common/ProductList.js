@@ -17,7 +17,7 @@ const ProductList = ({ product }) => {
       <div className="bg-gray-100 p-4 border rounded-lg">
         <div className="mt-2 flex flex-col gap-2">
           <div className="col-span-1">
-            <img src={product_image} alt="product" className="object-cover h-40" />
+            <img src={product_image} alt="product" className="object-cover h-40 mx-auto" />
           </div>
           <Link
             to={`/product/${id}`}
