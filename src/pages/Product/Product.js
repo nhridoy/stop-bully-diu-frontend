@@ -20,16 +20,16 @@ const Product = () => {
     // <div className="py-4 grid grid-cols-3 gap-4">
     <div className="py-4">
       <div className="col-span-1">
-        <img src={product_image} alt="product" />
+        <img src={product_image} alt="product" className="h-80 mx-auto" />
       </div>
       {/* <div className="col-span-2"> */}
-      <h2 className="text-3xl italic font-semibold">{product_name}</h2>
+      <h2 className="text-3xl italic font-semibold py-3">{product_name}</h2>
       <p>Price: ${product_price}</p>
       <p>Description: {product_desc}</p>
-      <p>Stock: {product_stock}</p>
+      <p className="pb-4">Stock: {product_stock}</p>
 
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
         onClick={() => {
           alert("Added to cart!");
           addToLocalStorage(id);
